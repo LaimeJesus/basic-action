@@ -28,9 +28,9 @@ jobs:
         run: docker build -t $DOCKERHUB_REPO_NAME .
       - name: Tags
         run: |
-          docker tag $DOCKERHUB_REPO_NAME ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:$SHORT_SHA
+          docker tag $DOCKERHUB_REPO_NAME ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:feature-${{ github.sha }}
           docker tag $DOCKERHUB_REPO_NAME ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:latest
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:$SHORT_SHA
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:feature-${{ github.sha }}
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:latest
