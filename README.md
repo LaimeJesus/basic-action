@@ -1,5 +1,7 @@
 # basic-action
 
+[![Actions Status](https://github.com/LaimeJesus/basic-action/workflows/build/badge.svg)](https://github.com/LaimeJesus/basic-action/actions)
+
 This is a nginx server example which serves a basic `index.html` file. 
 
 The goal of this repository is to generate a Dockerfile which expose this application on Github Pages using the Github Action functionality to redeploy this docker image.
