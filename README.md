@@ -21,8 +21,10 @@ The goal of this repository is to generate a Dockerfile which expose this applic
 
 ## References
 
-- [**docker-nginx tutorial**](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/)
-- [**nginx tutorial**](https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts)
-- [**nginx-logging-1**](https://www.nginx.com/blog/sampling-requests-with-nginx-conditional-logging/)
-- [**nginx-logging-2**](https://docs.nginx.com/nginx/admin-guide/monitoring/logging/)
-- [**nginx default docker loggin**](https://docs.docker.com/config/containers/logging/)
+- [**Docker Nginx Tutorial**](https://www.docker.com/blog/how-to-use-the-official-nginx-docker-image/)
+- [**Nginx Tutorial**](https://www.digitalocean.com/community/tutorials/understanding-the-nginx-configuration-file-structure-and-configuration-contexts)
+- [**Nginx Logging 1**](https://www.nginx.com/blog/sampling-requests-with-nginx-conditional-logging/)
+- [**Nginx Logging 2**](https://docs.nginx.com/nginx/admin-guide/monitoring/logging/)
+- [**Nginx Default Docker Logging**](https://docs.docker.com/config/containers/logging/)
+- [**Github Actions Tutorial**](https://www.basefactor.com/github-actions-docker)
+- [**Github Actions**](https://docs.github.com/en/free-pro-team@latest/actions)
