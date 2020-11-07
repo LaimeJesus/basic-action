@@ -21,7 +21,7 @@ jobs:
           if [[ ${{ github.ref }} == refs/heads/dev ]]; then
             TAG=$(git rev-parse --short=8 ${{ github.sha }})
           elif [[ ${{ github.ref }} == refs/heads/release ]]; then
-            TAG=${{ github.event.head_commit.message }}
+            TAG=$(git show -s --format=%s ${{ github.sha }})
           elif [[ ${{ github.ref }} == refs/heads/main ]]; then
             TAG=${{ 'latest' }}
           fi
