@@ -3,6 +3,11 @@ on:
   push:
     branches:
       - 'feature/*'
+
+env:
+  DOCKERHUB_REPO_NAME: basic-action
+  SHORT_SHA: $(git rev-parse --short=4 ${{ github.sha }})
+
 jobs:
   feature-job:
     runs-on: ubuntu-latest
@@ -20,12 +25,12 @@ jobs:
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
-        run: docker build -t basic-action .
+        run: docker build -t ${DOCKERHUB_REPO_NAME} .
       - name: Tags
         run: |
-          docker tag basic-action ${{ secrets.DOCKERHUB_USERNAME }}/basic-action:${{ github.sha }}
-          docker tag basic-action ${{ secrets.DOCKERHUB_USERNAME }}/basic-action:latest
+          docker tag ${DOCKERHUB_REPO_NAME} ${{ secrets.DOCKERHUB_USERNAME }}/${DOCKERHUB_REPO_NAME}:${SHORT_SHA}
+          docker tag ${DOCKERHUB_REPO_NAME} ${{ secrets.DOCKERHUB_USERNAME }}/${DOCKERHUB_REPO_NAME}:latest
       - name: Push
         run: |
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/basic-action:${{ github.sha }}
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/basic-action:latest
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${DOCKERHUB_REPO_NAME}:${SHORT_SHA}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/${DOCKERHUB_REPO_NAME}:latest
