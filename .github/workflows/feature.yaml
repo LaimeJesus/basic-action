@@ -18,11 +18,11 @@ jobs:
       - name: Prepare Docker Image Tag
         id: prep
         run: |
-          if [[ $GITHUB_REF == refs/heads/dev ]]; then
+          if [[ ${{ github.ref }} == refs/heads/dev ]]; then
             TAG=$(git rev-parse --short=8 ${{ github.sha }})
-          elif [[ $GITHUB_REF == refs/heads/release ]]; then
+          elif [[ ${{ github.ref }} == refs/heads/release ]]; then
             TAG=${{ github.event.head_commit.message }}
-          elif [[ $GITHUB_REF == refs/heads/main ]]; then
+          elif [[ ${{ github.ref }} == refs/heads/main ]]; then
             TAG=${{ 'latest' }}
           else
             TAG=feature
