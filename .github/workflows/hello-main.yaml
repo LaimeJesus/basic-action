@@ -4,7 +4,7 @@ on:
     branches:
       - main
 jobs:
-  my-job:
+  main-job:
     runs-on: ubuntu-latest
     steps:
       - name: hello-main

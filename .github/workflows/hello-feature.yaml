@@ -4,8 +4,12 @@ on:
     branches:
       - 'feature/*'
 jobs:
-  my-job:
+  feature-job:
     runs-on: ubuntu-latest
     steps:
       - name: hello-feature
-        run: echo "Hello Feature"
+        run: echo "Hello Feature" ${{ github.ref }}
+      - name: hello-branch
+        run: echo "Hello " ${{ github.ref }}
+      - name: hello-sha
+        run: echo "Hello " ${{ github.sha }}
