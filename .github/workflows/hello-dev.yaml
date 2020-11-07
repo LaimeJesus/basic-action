@@ -1,10 +1,10 @@
-name: hello-world
+name: hello-dev
 on:
   push:
     branches:
       - dev
 jobs:
-  my-job:
+  dev-job:
     runs-on: ubuntu-latest
     steps:
       - name: Dump GitHub context
