@@ -1,23 +1,31 @@
-name: hello-main
+name: build
+
 on:
   push:
     branches:
+      - dev
+      - release
       - main
+
+env:
+  DOCKERHUB_REPO_NAME: basic-action
+
 jobs:
-  main-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: hello-main
-        env:
-          webname: ${{ secrets.SECRET_WEBNAME }}
-        run: echo "Hello $webname"
   build-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Prepare Docker Image Tag
         id: prep
-        run: echo ::set-output name=image_tag::${{ 'latest' }}
+        run: |
+          if [[ ${{ github.ref }} == refs/heads/dev ]]; then
+            TAG=$(git rev-parse --short=8 ${{ github.sha }})
+          elif [[ ${{ github.ref }} == refs/heads/release ]]; then
+            TAG=${{ github.event.head_commit.message }}
+          elif [[ ${{ github.ref }} == refs/heads/main ]]; then
+            TAG=${{ 'latest' }}
+          fi
+          echo ::set-output name=image_tag::${TAG}
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build

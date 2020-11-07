@@ -1,4 +1,5 @@
-name: hello-feature
+name: feature
+
 on:
   push:
     branches:
