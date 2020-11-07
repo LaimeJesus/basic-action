@@ -28,3 +28,5 @@ jobs:
             TAG=feature
           fi
           echo ::set-output name=image_tag::${TAG}
+      - name: Show output
+        run: echo "Hello ${{ steps.prep.outputs.image_tag }}"
