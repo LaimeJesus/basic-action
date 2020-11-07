@@ -1,2 +1,5 @@
 
 *.md
+docs/
+.git/
+.github/
