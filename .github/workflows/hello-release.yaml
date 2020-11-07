@@ -1,23 +1,20 @@
-name: hello-main
+name: hello-release
 on:
   push:
     branches:
-      - main
+      - release
+
+env:
+  DOCKERHUB_REPO_NAME: basic-action
+
 jobs:
-  main-job:
-    runs-on: ubuntu-latest
-    steps:
-      - name: hello-main
-        env:
-          webname: ${{ secrets.SECRET_WEBNAME }}
-        run: echo "Hello $webname"
   build-job:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
       - name: Prepare Docker Image Tag
         id: prep
-        run: echo ::set-output name=image_tag::${{ latest }}
+        run: echo ::set-output name=image_tag::${{ github.ref }}
       - name: Docker login
         run: docker login -u ${{ secrets.DOCKERHUB_USERNAME }} -p ${{ secrets.DOCKERHUB_PASSWORD }}
       - name: Build
