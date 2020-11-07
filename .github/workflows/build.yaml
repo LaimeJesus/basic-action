@@ -20,8 +20,8 @@ jobs:
         run: |
           if [[ ${{ github.ref }} == refs/heads/dev ]]; then
             TAG=$(git rev-parse --short=8 ${{ github.sha }})
-          elif [[ ${{ github.ref }} == refs/heads/release ]]; then
-            TAG=$(git show -s --format=%s ${{ github.sha }})
+          elif [[ ${{ github.ref }} == refs/heads/release/* ]]; then
+            TAG=$(echo ${{ github.ref }} | cut -d '/' -f 4)
           elif [[ ${{ github.ref }} == refs/heads/main ]]; then
             TAG=${{ 'latest' }}
           fi
