@@ -15,18 +15,3 @@ jobs:
         run: echo "Hello ${{ github.ref }}"
       - name: hello-sha
         run: echo "Hello ${{ github.sha }}"
-      - name: Prepare Docker Image Tag
-        id: prep
-        run: |
-          if [[ ${{ github.ref }} == refs/heads/dev ]]; then
-            TAG=$(git rev-parse --short=8 ${{ github.sha }})
-          elif [[ ${{ github.ref }} == refs/heads/release ]]; then
-            TAG=${{ github.event.head_commit.message }}
-          elif [[ ${{ github.ref }} == refs/heads/main ]]; then
-            TAG=${{ 'latest' }}
-          else
-            TAG=feature
-          fi
-          echo ::set-output name=image_tag::${TAG}
-      - name: Show output
-        run: echo "Hello ${{ steps.prep.outputs.image_tag }}"
