@@ -14,8 +14,3 @@ jobs:
         run: echo "Hello ${{ github.ref }}"
       - name: hello-sha
         run: echo "Hello ${{ github.sha }}"
-      - name: Prepare Docker Image Tag
-        id: prep
-        run: echo ::set-output name=image_tag::${{ github.event.head_commit.message }}
-      - name: Show image tag
-        run: echo ${{ steps.prep.outputs.image_tag }}
