@@ -8,6 +8,7 @@ on:
       - main
 
 env:
+  DOCKERHUB_ORGANIZATION: jesuslaime
   DOCKERHUB_REPO_NAME: basic-action
 
 jobs:
@@ -31,6 +32,6 @@ jobs:
       - name: Build
         run: docker build -t $DOCKERHUB_REPO_NAME .
       - name: Tags
-        run: docker tag $DOCKERHUB_REPO_NAME ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:${{ steps.prep.outputs.image_tag }}
+        run: docker tag $DOCKERHUB_REPO_NAME $DOCKERHUB_ORGANIZATION/$DOCKERHUB_REPO_NAME:${{ steps.prep.outputs.image_tag }}
       - name: Push
-        run: docker push ${{ secrets.DOCKERHUB_USERNAME }}/$DOCKERHUB_REPO_NAME:${{ steps.prep.outputs.image_tag }}
+        run: docker push $DOCKERHUB_ORGANIZATION/$DOCKERHUB_REPO_NAME:${{ steps.prep.outputs.image_tag }}
